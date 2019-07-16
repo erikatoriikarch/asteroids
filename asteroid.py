@@ -3,7 +3,7 @@ import pygame, random
 class Asteroid(pygame.sprite.Sprite):
 
     def __init__(self, pos, size):
-        super().__init__
+        super().__init__()
         self.image = pygame.image.load('asteroid.png')
         self.image = pygame.transform.smoothscale(self.image, (size, size))
         self.rect = self.image.get_rect()
