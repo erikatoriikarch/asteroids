@@ -5,6 +5,7 @@ import matplotlib.pyplot as plot
 import numpy as np
 from pygame.locals import *
 
+color = (255,255,255)
 pygame.init()
 screen_info = pygame.display.Info()
 background = pygame.image.load('background.png')
@@ -21,7 +22,7 @@ df = pd.read_csv('game_info.csv')
 
 #set up game variables
 asteroids = pygame.sprite.Group()
-numLevels = df['LevelNum'].max
+numLevels = df['LevelNum'].max()
 level = df['LevelNum'].min()
 levelData = df.iloc[level]
 asteroidCount = levelData['AsteroidCount']
@@ -36,7 +37,7 @@ def init():
     asteroids.empty()
     asteroidCount = levelData['AsteroidCount']
     for i in range(asteroidCount):
-        asteroids.add(Asteroid((random.randint(50, width - 50), random.randint(50, height -50)), random.randint(15, 60)))
+        asteroids.add(Asteroid((random.randint(50, width - 50), random.randint(50, height -50)), random.randint(25, 100)))
     tries = 1
 
 def win():
@@ -76,9 +77,9 @@ def main():
                 if event.key == K_LEFT:
                     player.speed[0] = -10
                 if event.key == K_UP:
-                    player.speed[1] = 10
-                if event.key == K_DOWN:
                     player.speed[1] = -10
+                if event.key == K_DOWN:
+                    player.speed[1] = 10
             if event.type == KEYUP:
                 if event.key == K_RIGHT:
                     player.speed[0] = 0
